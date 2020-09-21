@@ -21,6 +21,8 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
         {{-- 次の1行を追記 --}}
+        <!-- Styles -->
+        {{-- Laravel標準で用意されているCSSを読み込みます --}}
         <link href="{{ secure_asset('css/profile.css') }}" rel="stylesheet">
         {{-- この章の後半で作成するCSSを読み込みます --}}
         <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
