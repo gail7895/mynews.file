@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Profile;
+
 class ProfileController extends Controller
 {
     //以下を追記*/
@@ -24,8 +26,8 @@ class ProfileController extends Controller
         //フォームから送信されてきた_tokenを削除する
         unset($form['_token']);
         //データベースに保存する
-        $news->fill($form);
-        $news->save();
+        $profile->fill($form);
+        $profile->save();
         
         return redirect('admin/profile/create');
     }
