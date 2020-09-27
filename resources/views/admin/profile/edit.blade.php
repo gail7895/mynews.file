@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>My プロフィール編集</h2>
+                <h2>プロフィール編集</h2>
                 <form action="{{ action('Admin\ProfileController@update') }}" method="post" enctype="multipart/form-data">
 
                @csrf
@@ -35,7 +35,7 @@
                           </div>
                           <div class="form-check form-check-inline">
                               <input class="form-check-input" type="radio" name="gender" value="female" @if (old('gender', $profile_form->gender) == "female") checked @endif>
-                              <label class="form-checked">女性</label>
+                              <label class="form-checke-label">女性</label>
                           </div>
                           <div class="form-check form-check-inline">
                               <input class="form-check-input" type="radio" name="gender" value="others" @if (old('gender', $profile_form->gender) == "others") checked @endif>
