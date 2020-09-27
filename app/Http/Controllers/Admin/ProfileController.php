@@ -34,11 +34,27 @@ class ProfileController extends Controller
     
     public function edit()
     {
-        return view('admin.profile.edit');
+        $profile = Profile::find($request->id);
+        if(empty($profile)) {
+            abort(404);
+        }
+        return view('admin.profile.edit',['profile_form' => $profile]);
     }
     
-    public function update()
+    public function update(Request $request)
     {
+        //validationをかける
+        $this->validate($request, Profile::$rules);
+        // News Modelからデータを受け取る
+        $profile = Profile::find($request->id);
+        //送信されてきたフォームデータを格納する
+        $profile_form = $request->all();
+        unset($profile_form['_token']);
+        
+        //該当するデータを上書きして保存する
+        $profile->fill($profile_form)->save();
+        
+        
         return redirect('admin/profile/edit');
     }
     

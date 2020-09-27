@@ -11,6 +11,7 @@
                 <h2>My プロフィール編集</h2>
                 <form action="{{ action('Admin\ProfileController@update') }}" method="post" enctype="multipart/form-data">
 
+               @csrf
                 @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)
@@ -27,7 +28,19 @@
                     <div class="form-group row">
                         <label class="col-md-2" for="gender">性別</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="gender" value="{{ $profile_form->gender }}" >
+                            
+                          <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="gender" value="male" @if (old('gender', $profile_form->gender) == "male") checked @endif>
+                              <label class="form-check-label">男性</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="gender" value="female" @if (old('gender', $profile_form->gender) == "female") checked @endif>
+                              <label class="form-checked">女性</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="gender" value="others" @if (old('gender', $profile_form->gender) == "others") checked @endif>
+                              <label  class="form-check-label">その他</label>
+                          </div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -44,7 +57,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-10">
-                            <input type="hidden" name="id" value="{{ $profiles_form->id }}">
+                            <input type="hidden" name="id" value="{{ $profile_form->id }}">
                             {{ csrf_field() }}
                             <input type="submit" class="btn btn-primary" value="更新">
                         </div>
