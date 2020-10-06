@@ -6,5 +6,20 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    //
+    public function index(Request $request)
+    {
+        $posts = Profile::all()->sortByDesc('update_at');
+        
+        if (count($posts) > 0) {
+            $headline = $posts->shift();
+        } else {
+            $headline = null;
+        }
+        
+        // profile/index.php　ファイルを渡している
+        //またview テンプレートにheadline,posts,という変数を渡している
+        return view('profile.index',['headline' => $headline, 'posts' => $posts]);
+        
+    }
+    
 }
