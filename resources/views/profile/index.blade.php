@@ -1,35 +1,61 @@
 @extends('layouts.profile')
 @section('title','プロフィール')
+
 @section('content')
     <div class="container">
         <hr color="#c0c0c0">
-        @if (!is_null($headline))="row">
-          <div class="headline col-md-10 mx-auto">
+        @if (!is_null($headline))
+         <div class="row">
+          <div class="headline col-md-10 mx-auto ">
               <div class="row">
                   <div class="col-md-6">
-                      <div class="caption mx-auto">
-                          <thead>
-                              <tr>
-                                  <th width="10%>ID</th>
-                                  <th width="10%">名前</th>
-                                  <th width="10%">性別</th>
-                                  <th width="30%">趣味</th>
-                                  <th width="30%">自己紹介</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              @foreach($posts as $profile)
-                              <tr>
-                                  <th>{{ $profile->id }}</th>
-                                  <td>{{ $\Str::limit($profile->name, 10) }}</td>
-                                  <td>{{ $\Str::limit($profile->body, 10 }}</td>
-                                  <td>{{ $\Str::limit($profile->hobby, 50) }}</td>
-                              </tr>
+                      <div class="caption mx-auto ">
+                          <div class="title p-2">
+                              <h1>{{ str_limit($headline->name, 70) }}</h1>
+                          </div> 
+                          <div class="title p2">
+                              <h1>{{ str_limit($headline->gender, 70) }}</h1>
+                          </div>
+                          <div class="title p2">
+                              <h1>{{ str_limit($headline->hobby, 70) }}</h1>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                          <p class="introduction mx-auto">{{ str_limit($headline->introduction, 700) }}</p>
+                      </div>
+                     </div>
+                   </div>
+                 </div>
+                          @endif
+                           <hr color="#c0c0c0">
+                             <div class="row">
+                                <div class="posts col-md-8 mx-auto mt-3">
+                              @foreach($posts as $post)
+                               <div class="post">
+                                <div class="row">
+                                    <div class="text col-md-6">
+                                        <div class="date">
+                                            {{ \Str::limit($post->updated_at->format('Y年m月d日'), 10) }}
+                                        </div>
+                                        <div class="name">
+                                            {{ \Str::limit($post->name, 150) }}
+                                        </div>
+                                        <div class="gender">
+                                            {{ \Str::limit($post->gender, 150) }}
+                                        </div>
+                                        <div class="hobby">
+                                            {{ \Str::limit($post->hobby, 150) }}
+                                        </div>
+                                        <div class="introduction mt-3">
+                                          {{ \Str::limit($post->introduction, 1500) }}  
+                                        </div>
+                                      </div>
+                                   </div>
+                                </div>
                             @endforeach
-                          </tbody>
-                        </table>
                       </div>
                   </div>
-            </div>
+             </div>
        </div>
-    @endsection>
+    @endsection
